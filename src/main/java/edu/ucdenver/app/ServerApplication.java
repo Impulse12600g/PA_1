@@ -16,7 +16,7 @@ public class ServerApplication {
         tournament = new Tournament();//FIXME temp CONSTRUCTOR
     }
 
-
+/*
     public static void main(String[] args){
         LocalDateTime localDateTime1 = LocalDateTime.of(
                 2024, 04, 24, 14, 33, 48, 123456789);
@@ -29,6 +29,8 @@ public class ServerApplication {
         tournament.addTeam("reee", "USA");
         tournament.addPlayer("boobs","geoff", 45, 55.0, 3000);
     }
+
+ */
 
     public void addCountry(ActionEvent actionEvent) {
         tournament.addCountry(this.txtCountryName.getText());

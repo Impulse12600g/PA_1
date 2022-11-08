@@ -1,4 +1,4 @@
-module edu.ucdenver.pa {
+module edu.ucdenver.pa1 {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.desktop;
