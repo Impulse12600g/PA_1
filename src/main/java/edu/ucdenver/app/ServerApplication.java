@@ -1,10 +1,22 @@
 package edu.ucdenver.app;
 
 import edu.ucdenver.tournament.*;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 import java.time.LocalDateTime;
 
 public class ServerApplication {
+    public TextField txtCountryName;
+    public Button btnAddCountry;
+    private Tournament tournament;
+
+    public ServerApplication(){
+        tournament = new Tournament();//FIXME temp CONSTRUCTOR
+    }
+
+
     public static void main(String[] args){
         LocalDateTime localDateTime1 = LocalDateTime.of(
                 2024, 04, 24, 14, 33, 48, 123456789);
@@ -16,10 +28,10 @@ public class ServerApplication {
         //Team t = new Team("reee", tournament.getCountry("USA"));
         tournament.addTeam("reee", "USA");
         tournament.addPlayer("boobs","geoff", 45, 55.0, 3000);
-//
-//        for (Referee te : tournament.getListReferees()){
-//            System.out.println(te);
-//        }
-        //System.out.println(tournament);
+    }
+
+    public void addCountry(ActionEvent actionEvent) {
+        tournament.addCountry(this.txtCountryName.getText());
+        System.out.println(tournament);
     }
 }
