@@ -67,7 +67,7 @@ public class Tournament implements Serializable {
         }
         //tournament = new Tournament();//Fixme how do we declare this constructor
     }
-    public void saveToFile(String fileName){ //TODO finish file manipulation
+    public void saveToFile(String fileName){
         ObjectOutputStream oos = null;
 
         try{
@@ -87,7 +87,7 @@ public class Tournament implements Serializable {
                 }
             }
         }
-    }
+    } // Working
 
 
     // requirement 4: Add participating country
@@ -104,7 +104,7 @@ public class Tournament implements Serializable {
             }
             this.participatingCountries.add(new Country(countryName));
         }
-    }
+    } // Working
 
     // Requirement 5: Add a team representing a country
     // Try to get the team, if successful, the team is already there
@@ -127,7 +127,7 @@ public class Tournament implements Serializable {
                 }// If we cannot find the country, throw an exception
             }
         }
-    }
+    } // Working
 
     // Requirement 6: Add referee to the tournament
     // Similar to add team. Check if the referee is already in the list or not
@@ -150,7 +150,7 @@ public class Tournament implements Serializable {
                 }
             }
         }
-    }
+    } // Working
 
 
     // Requirement 7: Add a player to a national team squad
@@ -176,7 +176,6 @@ public class Tournament implements Serializable {
 
     // Requirement 8: Add a match on a particular date and time between two national teams
     // Only one match at a time -> throw exception if there is already a match at that time, team not found, same teams
-    //TODO: TEST EXCEPTIONS
     public void addMatch(LocalDateTime dateTime, Team teamAName, Team teamBName){
         boolean teamAFound = false;
         boolean teamBFound = false;
@@ -200,14 +199,13 @@ public class Tournament implements Serializable {
 
         // Add match if you get to this point
         this.listMatches.add(new Match(dateTime, teamAName, teamBName));
-        }
+        } // Working
 
     // Requirement 9: Assign referee to a match
     // 4 referees required for a match
     // Ref country cannot be the same as a team's country.
     // Throw exceptions for those two fields, and one if the ref is not in the system
     // Currently, exceptions are being handled in Match
-    // TODO: TEST
     public void addRefereeToMatch(LocalDateTime dateTime, String refereeName){
         // Loop through referees to make sure referee is in the list
         // Find the match that matches the time
@@ -230,9 +228,9 @@ public class Tournament implements Serializable {
             if(!refFound){throw new IllegalArgumentException("Referee was not found");}
             if(!matchFound){throw new IllegalArgumentException("Match was not found");}
         }
-    }
+    } // Working
 
-    // TODO Requirement 10: Add a player to the team's lineup for a particular match
+    // Requirement 10: Add a player to the team's lineup for a particular match
     // 11 players from the team's squad (no subs) -> implemented in Match
     // Player must be in national team's squad
     // Exception handling for above
@@ -276,7 +274,7 @@ public class Tournament implements Serializable {
                 } else {throw new IllegalArgumentException("Team name not found");}
             } else {throw new IllegalArgumentException("Match not found");}
         }
-    }
+    } // Working
 
     // Requirement 11: Record the score of a completed match
     // Match date/time in the past
