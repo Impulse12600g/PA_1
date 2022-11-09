@@ -220,7 +220,6 @@ public class Tournament implements Serializable {
     // Player must be in national team's squad
     // Exception handling for above
     public void addPlayerToMatch(LocalDateTime dateTime, String teamName, String playerName){
-
         for(Match m: listMatches){
             // Find correct match
             if(m.getDateTime() == dateTime){

@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Objects;
 
 public class ServerApplication {
     public TextField txtCountryName;
@@ -29,6 +30,8 @@ public class ServerApplication {
     public Button btnAddTeam;
     public TextField txtAddTeam;
     public Button btnAddRefereeToMatch;
+    public TextField txtHour;
+    public TextField txtMinute;
     private Tournament tournament;
 
     public ServerApplication(){
@@ -62,8 +65,24 @@ public class ServerApplication {
     }
 
     public void addMatch(ActionEvent actionEvent) {
-    //    tournament.addMatch(this.dtpMatchDate.getValue().atTime(LocalTime.ofSecondOfDay(Integer.parseInt(this.txtTime.getText()))),
-//                this.txtTeamA.getText(), this.txtTeamB.getText());//fixme
+        Team teamA = null;
+        Team teamB = null;
+        if(this.txtTeamA == this.txtTeamB){
+            throw new IllegalArgumentException("The teams are the same");
+        }
+        for(Team t : tournament.getListTeams()){
+            if(Objects.equals(t.getName(), this.txtTeamA.getText())){
+                teamA = t;
+            }
+            if(Objects.equals(t.getName(), this.txtTeamB.getText())){
+                teamB = t;
+            }
+        }
+        if((teamA == null) ||( teamB == null)){
+            throw new IllegalArgumentException("Team not found in tournament");
+        }
+        tournament.addMatch(this.dtpMatchDate.getValue().atTime(Integer.parseInt(txtHour.getText()) ,Integer.parseInt(txtMinute.getText())),
+                teamA, teamB);
         //Team object to string
         //tournament.addReferee();//country
     }
