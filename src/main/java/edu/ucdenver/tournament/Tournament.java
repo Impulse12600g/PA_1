@@ -35,9 +35,7 @@ public class Tournament implements Serializable {
 
 
     //fixme TEMPORARY CONSTRUCTOR FOR
-    public Tournament() {
-
-    }
+    //public Tournament() {}
 
     public ArrayList<Country> getParticipatingCountries(){return participatingCountries;}
     public ArrayList<Team> getListTeams() {return listTeams;}
