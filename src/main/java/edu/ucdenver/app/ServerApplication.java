@@ -173,7 +173,7 @@ public class ServerApplication {
     public void getUpcomingMatches(Event event) {
         if(this.tabUpcomingMatches.isSelected()) {
             this.lstMatchesOn.setItems(FXCollections.observableArrayList(tournament.getUpcomingMatches()));
-        }
+        } lstMatchesOn.refresh();
 
     }
 }
