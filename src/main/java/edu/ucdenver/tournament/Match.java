@@ -29,7 +29,7 @@ public class Match {
     public LineUp getTeamB(){return lineupB;}
 
 
-    public LocalDateTime getDateTime(){return dateTime;}
+    public LocalDateTime getDateTime(){return this.dateTime;}
     public boolean isUpcoming(){
         // First one will aso check if the match is currently happening
         // Second check is just if the match is in the future
@@ -60,7 +60,7 @@ public class Match {
         // Match referee requirement -> only four in a match
         // Referee cannot share team's country
         // TODO: TEST
-        if(getReferees().size() == 4){
+        if(listReferees.size() == 4){
             throw new IllegalArgumentException("There are already 4 referees assigned to this match");
         }else if(referee.getCountry() == teamA.getCountry() || referee.getCountry() == teamB.getCountry()){
             throw new IllegalArgumentException("Referee cannot share a country as a team in the match");

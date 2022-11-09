@@ -62,8 +62,7 @@ public class ServerApplication {
         tournament.addPlayer(this.txtTeamName.getText(),this.txtPlayerName.getText(), Integer.parseInt(this.txtPlayerAge.getText()),
                 Double.parseDouble(this.txtPlayerHeight.getText()), Double.parseDouble(this.txtPlayerWeight.getText()));
         System.out.println(tournament);
-    }
-
+    } // Working
     public void addMatch(ActionEvent actionEvent) {
         Team teamA = null;
         Team teamB = null;
@@ -85,8 +84,7 @@ public class ServerApplication {
                 teamA, teamB);
         //Team object to string
         //tournament.addReferee();//country
-    }
-
+    } // Working
 
     public void AddRefereeToMatch(ActionEvent actionEvent) {
         tournament.addRefereeToMatch(this.dtpMatchDate.getValue().atTime(Integer.parseInt(txtHour.getText()) ,Integer.parseInt(txtMinute.getText())),
