@@ -108,7 +108,7 @@ public class Tournament implements Serializable {
                     }
                     this.listTeams.add(new Team(teamName, c));
                 }// If we cannot find the country, throw an exception
-            } else {throw new IllegalArgumentException("Country not in the list");}
+            }
         }
     }
 
@@ -131,7 +131,7 @@ public class Tournament implements Serializable {
                     }
                     this.listReferees.add(new Referee(name, c));
                 }
-            } else {throw new IllegalArgumentException("Country not in the list");}
+            }
         }
     }
 
