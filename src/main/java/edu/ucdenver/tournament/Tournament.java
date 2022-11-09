@@ -33,6 +33,12 @@ public class Tournament implements Serializable {
         // TODO potential exception handling if there is already a tournament at start date and end date
     }
 
+
+    //fixme TEMPORARY CONSTRUCTOR FOR
+    public Tournament() {
+
+    }
+
     public ArrayList<Country> getParticipatingCountries(){return participatingCountries;}
     public ArrayList<Team> getListTeams() {return listTeams;}
     public ArrayList<Referee> getListReferees(){return listReferees;}
