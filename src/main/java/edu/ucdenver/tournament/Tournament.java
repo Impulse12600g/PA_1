@@ -243,11 +243,13 @@ public class Tournament implements Serializable {
                 // Check for team A
                 if(Objects.equals(m.teamA.getName(), teamName)){
                     // Get players from team A
-                    for(Player p: m.lineupA.getPlayers()){
-                        // if player already on lineup, throw exception
-                        if(Objects.equals(p.getName(), playerName)){
-                            // throw exception if player is already there
-                            throw new IllegalArgumentException("Player already on team");
+                    if(m.lineupA.getPlayers() != null) {
+                        for (Player p : m.lineupA.getPlayers()) {
+                            // if player already on lineup, throw exception
+                            if (Objects.equals(p.getName(), playerName)) {
+                                // throw exception if player is already there
+                                throw new IllegalArgumentException("Player already on team");
+                            }
                         }
                     }// add player if not already there
                     for (Player pA : m.teamA.getSquad()) {
@@ -255,14 +257,15 @@ public class Tournament implements Serializable {
                             m.addPlayer(pA, m.teamA);
                         }
                     }
-
-                    // Check for team B
+                // Check for team B
                 } else if(Objects.equals(m.teamB.getName(), teamName)){
                     // Get players from team B
-                    for(Player p: m.lineupB.getPlayers()){
-                        // if player already on lineup, throw exception
-                        if(Objects.equals(p.getName(), playerName)){
-                            throw new IllegalArgumentException("Player already on team");
+                    if(m.lineupB.getPlayers() != null) {
+                        for (Player p : m.lineupB.getPlayers()) {
+                            // if player already on lineup, throw exception
+                            if (Objects.equals(p.getName(), playerName)) {
+                                throw new IllegalArgumentException("Player already on team");
+                            }
                         }
                     }// add player if not already there
                     for (Player pB : m.teamB.getSquad()) {
