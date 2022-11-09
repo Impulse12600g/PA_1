@@ -73,25 +73,19 @@ public class Tournament implements Serializable {
         }
 
     }
-    public Country getCountry(String countryName) throws IllegalArgumentException{
-        Country country;
-        for(Country c: this.participatingCountries){
-            if((c.getCountryName()).equalsIgnoreCase(countryName)){return c;}
-        }
-        throw new IllegalArgumentException("Country is not participating");
-    }
-
     // requirement 4: Add participating country
     // Will check if the country is already on the list
     // Add new country to the list if not
     public void addCountry(String countryName){
-        Country country = null;
-        try{country = this.getCountry(countryName);}
-        catch(IllegalArgumentException iae){
+        if(this.participatingCountries.isEmpty()){
             this.participatingCountries.add(new Country(countryName));
-        }
-        if(country != null){
-            throw new IllegalArgumentException("Country is already in the list");
+        } else {
+            for(Country c: this.participatingCountries){
+                if(Objects.equals(c.getCountryName(), countryName)){
+                    throw new IllegalArgumentException("Country is already in the list");
+                }
+            }
+            this.participatingCountries.add(new Country(countryName));
         }
     }
 
@@ -110,10 +104,9 @@ public class Tournament implements Serializable {
                     for (Team t : this.listTeams) {
                         if (Objects.equals(t.getName(), teamName)) {
                             throw new IllegalArgumentException("Team is already in the list");
-                        } else {
-                            this.listTeams.add(new Team(teamName, c));
                         }
                     }
+                    this.listTeams.add(new Team(teamName, c));
                 }// If we cannot find the country, throw an exception
             } else {throw new IllegalArgumentException("Country not in the list");}
         }
@@ -134,10 +127,9 @@ public class Tournament implements Serializable {
                     for(Referee r: this.listReferees){
                         if(Objects.equals(r.getName(), name)){
                             throw new IllegalArgumentException("Referee is already in the tournament");
-                        } else {
-                            this.listReferees.add(new Referee(name, c));
                         }
                     }
+                    this.listReferees.add(new Referee(name, c));
                 }
             } else {throw new IllegalArgumentException("Country not in the list");}
         }
@@ -145,7 +137,7 @@ public class Tournament implements Serializable {
 
 
     // Requirement 7: Add a player to a national team squad
-    // TODO: Make sure there are only 35 players on a squad
+    // Make sure there are only 35 players on a squad
     // Will make sure player is not already on team (same name)
     public void addPlayer(String teamName, String playerName, int age, double height, double weight){
         for(Team t : this.listTeams) {
@@ -157,14 +149,14 @@ public class Tournament implements Serializable {
                     for(Player p: t.getSquad()) {
                         if ((p.getName()).equals(playerName)) {
                             throw new IllegalArgumentException("Player is already on a team");
-                        } else {
-                            t.addPlayer(playerName, age, height, weight);
                         }
                     }
+                    t.addPlayer(playerName, age, height, weight);
                }
             }
         }
-    }
+    } // working
+
     // Requirement 8: Add a match on a particular date and time between two national teams
     // Only one match at a time -> throw exception if there is already a match at that time, team not found, same teams
     //TODO: TEST EXCEPTIONS
