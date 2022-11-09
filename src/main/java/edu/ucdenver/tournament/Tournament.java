@@ -115,13 +115,15 @@ public class Tournament implements Serializable {
             if(Objects.equals(c.getCountryName(), country)){
                 if(this.listTeams.isEmpty()){
                     this.listTeams.add(new Team(teamName, c));
-                }
-                for(Team t: this.listTeams){
-                    if(Objects.equals(t.getName(), teamName)){throw new IllegalArgumentException("Team is already in the list");}
-                    else {
-                        this.listTeams.add(new Team(teamName, c));
+                }else {
+                    for (Team t : this.listTeams) {
+                        if (Objects.equals(t.getName(), teamName)) {
+                            throw new IllegalArgumentException("Team is already in the list");
+                        } else {
+                            this.listTeams.add(new Team(teamName, c));
+                        }
                     }
-                } // If we cannot find the country, throw an exception
+                }// If we cannot find the country, throw an exception
             } else {throw new IllegalArgumentException("Country not in the list");}
         }
     }
