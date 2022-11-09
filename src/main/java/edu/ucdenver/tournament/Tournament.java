@@ -91,31 +91,29 @@ public class Tournament implements Serializable {
         }
     }
 
-    public Team getTeam(String teamName) throws IllegalArgumentException{ // added getter for testing and setter
-        for(Team t: this.listTeams){
-            if((t.getName()).equals(teamName)){return t;}
-        }
-        throw new IllegalArgumentException("Team is not in the list");
-    }
+//    public Team getTeam(String teamName) throws IllegalArgumentException{ // added getter for testing and setter
+//        for(Team t: this.listTeams){
+//            if((t.getName()).equals(teamName)){
+//                return t;
+//            }
+//        }
+//        return null;
+//    }
 
     // Requirement 5: Add a team representing a country
     // Try to get the team, if successful, the team is already there
     // If not, loop through countries to find the matching country to assign team to
     // Add team to team list with participating country attribute
     public void addTeam(String teamName, String country){
-        Team team = null;
-        //LineUp lineUp = null;
-        try{
-            team = this.getTeam(teamName);
-        } catch (IllegalArgumentException e) {
-            for(Country c: participatingCountries){
-                if(Objects.equals(c.getCountryName(), country))
-                    this.listTeams.add(new Team(name, c));
+        for (Team t : this.listTeams) {
+            if (Objects.equals(t.getName(), teamName)) {
+                throw new IllegalArgumentException("Team is already in the list");
+            } else {
+                for (Country c : this.participatingCountries) {
+                    if (Objects.equals(c.getCountryName(), country))
+                        this.listTeams.add(new Team(teamName, c));
+                }
             }
-
-        }
-        if(team != null) {
-            throw new IllegalArgumentException("Team is already in the list");
         }
     }
 
@@ -228,8 +226,38 @@ public class Tournament implements Serializable {
     // 11 players from the team's squad (no subs) -> implemented in Match
     // Player must be in national team's squad
     // Exception handling for above
-    public void addPlayerToMatch(LocalDate dateTime, String teamName, String playerName){
+    public void addPlayerToMatch(LocalDateTime dateTime, String teamName, String playerName){
 
+        for(Match m: listMatches){
+            // Find correct match
+            if(m.getDateTime() == dateTime){
+                // Check for team A
+                if(Objects.equals(m.teamA.getName(), teamName)){
+                    // Get players from team A
+                    for(Player p: m.lineupA.getPlayers()){
+                        // if player already on lineup, throw exception
+                        if(Objects.equals(p.getName(), playerName)){
+                            throw new IllegalArgumentException("Player already on team");
+                            // add player if not already there
+                        } else {
+                            m.addPlayer(p, m.teamA);
+                        }
+                    }
+                    // Check for team B
+                } else if(Objects.equals(m.teamB.getName(), teamName)){
+                    // Get players from team B
+                    for(Player p: m.lineupB.getPlayers()){
+                        // if player already on lineup, throw exception
+                        if(Objects.equals(p.getName(), playerName)){
+                            throw new IllegalArgumentException("Player already on team");
+                            // add player if not already there
+                        } else {
+                            m.addPlayer(p, m.teamB);
+                        }
+                    }
+                } else {throw new IllegalArgumentException("Team name not found");}
+            } else {throw new IllegalArgumentException("Match not found");}
+        }
     }
 
     // Requirement 11: Record the score of a completed match
@@ -263,22 +291,55 @@ public class Tournament implements Serializable {
         return upcoming;
     }
 
-    // TODO Requirement 13: Get list of matches on a particular date, without time
-    public List<Match> getMatchesOn(LocalDate date){
-
-        return null;//fixme
+    // Requirement 13: Get list of matches on a particular date, without time
+    // TODO: TEST
+    public List<Match> getMatchesOn(LocalDateTime date){
+        ArrayList<Match> matchesOn = new ArrayList<>();
+        for(Match m: listMatches){
+            if(m.getDateTime() == date){
+                matchesOn.add(m);
+            }
+        }
+        return matchesOn;
     }
-
-    // TODO Requirement 14: Get list of all games for a specific team, past matches include the score
-    public List<Match> getMatchesFor(){
-
-        return null;//fixme
+    // Requirement 14: Get list of all games for a specific team, past matches include the score
+    // TODO: TEST
+    public List<Match> getMatchesFor(String teamName){
+        ArrayList<Match> matchesForTeam = new ArrayList<>();
+        for(Match m: listMatches){
+            // check for team A
+            if(Objects.equals(m.teamA.getName(), teamName)){
+                matchesForTeam.add(m);
+                }
+                // Check for team B
+             else if(Objects.equals(m.teamB.getName(), teamName)){
+                matchesForTeam.add(m);
+                }
+        }
+        // If no teams were added throw exception
+        if(matchesForTeam.isEmpty()){
+            throw new IllegalArgumentException("No matches for that team");
+        } else {
+            return matchesForTeam;
+        }
     }
-
-    // TODO Requirement 15: Get the lineups for a match (either past of future)
-    public List<LineUp> getMatchLineUps(){
-
-        return null;//fixme
+    // Requirement 15: Get the lineups for a match (either past of future)
+    // TODO: TEST
+    public List<LineUp> getMatchLineUps(LocalDateTime date){
+        ArrayList<LineUp> lineUps = new ArrayList<>();
+        for(Match m: listMatches){
+            // Add both lineups to arraylist if the match is on the given date
+            if(m.getDateTime() == date){
+                lineUps.add(m.lineupA);
+                lineUps.add(m.lineupB);
+            }
+        }
+        // If no lineups were added throw exception
+        if(lineUps.isEmpty()){
+            throw new IllegalArgumentException("No lineups for that date");
+        } else {
+            return lineUps;
+        }
     }
 
 }
