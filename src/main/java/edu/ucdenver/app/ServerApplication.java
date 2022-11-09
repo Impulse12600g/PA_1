@@ -28,6 +28,7 @@ public class ServerApplication {
     public Button btnAddReferee;
     public Button btnAddTeam;
     public TextField txtAddTeam;
+    public Button btnAddRefereeToMatch;
     private Tournament tournament;
 
     public ServerApplication(){
@@ -73,5 +74,9 @@ public class ServerApplication {
     }
 
 
+    public void AddRefereeToMatch(ActionEvent actionEvent) {
+        tournament.addRefereeToMatch(this.dtpMatchDate.getValue().atTime(LocalTime.ofSecondOfDay(Integer.parseInt(this.txtTime.getText()))),
+                this.txtRefereeName.getText());
 
+    }
 }
