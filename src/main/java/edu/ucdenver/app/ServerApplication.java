@@ -41,28 +41,20 @@ public class ServerApplication {
         tournament = new Tournament("world cup", localDateTime1, localDateTime2);
 
     }
-    /*
-        tournament.addCountry("USA");
-        tournament.addReferee("Jeff", "USA");
-        //Team t = new Team("reee", tournament.getCountry("USA"));
-        tournament.addTeam("reee", "USA");
-        tournament.addPlayer("boobs","geoff", 45, 55.0, 3000);
-
-     */
 
     public void addCountry(ActionEvent actionEvent) {
         tournament.addCountry(this.txtCountryName.getText());
         for(Country c: tournament.getParticipatingCountries()){
             System.out.println(c.getCountryName());
         }
-    }
+    } // Working
     public void addTeam(ActionEvent actionEvent) {
         tournament.addTeam(this.txtAddTeam.getText(), this.txtCountryName.getText());
 
-    }
+    } // Working
     public void addReferee(ActionEvent actionEvent) {
         tournament.addReferee(this.txtRefereeName.getText(), this.txtCountryName.getText());
-    }
+    } // Working
     public void addPlayer(ActionEvent actionEvent) {
         tournament.addPlayer(this.txtTeamName.getText(),this.txtPlayerName.getText(), Integer.parseInt(this.txtPlayerAge.getText()),
                 Double.parseDouble(this.txtPlayerHeight.getText()), Double.parseDouble(this.txtPlayerWeight.getText()));

@@ -148,21 +148,21 @@ public class Tournament implements Serializable {
     // TODO: Make sure there are only 35 players on a squad
     // Will make sure player is not already on team (same name)
     public void addPlayer(String teamName, String playerName, int age, double height, double weight){
-
-        try{
-            for(Team t : this.listTeams) {
-                if(Objects.equals(teamName, t.getName())){
+        for(Team t : this.listTeams) {
+            if(Objects.equals(teamName, t.getName())){
+                // check if the squad is empty
+                if(t.getSquad() == null){
+                    t.addPlayer(playerName, age, height,  weight);
+                } else {
                     for(Player p: t.getSquad()) {
-                   if ((p.getName()).equals(playerName)) {
-                       throw new IllegalArgumentException("Player is already on a team");
-                   }else{
-                       t.addPlayer(playerName, age, height,  weight);
-                   }
+                        if ((p.getName()).equals(playerName)) {
+                            throw new IllegalArgumentException("Player is already on a team");
+                        } else {
+                            t.addPlayer(playerName, age, height, weight);
+                        }
+                    }
                }
             }
-            }
-        }catch (IllegalArgumentException iae){
-            iae.printStackTrace();
         }
     }
     // Requirement 8: Add a match on a particular date and time between two national teams

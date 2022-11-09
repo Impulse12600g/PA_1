@@ -16,7 +16,9 @@ public class Team {
         return country;
     }
 
-    public List<Player> getSquad(){return squad;}
+    public List<Player> getSquad(){
+        return new ArrayList<>(this.squad);
+    }
 
     public void addPlayer(String name, int age, double height, double weight){
         this.squad.add(new Player(name, age, height, weight));
