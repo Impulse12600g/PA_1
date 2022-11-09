@@ -53,6 +53,14 @@ public class ServerApplication {
     public DatePicker dtpAddPlayerMatchDate;
     public Button btnAddPlayerToMatch;
     public ListView <Match> lstMatchesOn;
+    public TextField txtCountryNameToTeam;
+    public TextField txtCountryNameToRef;
+    public DatePicker dtpRecordMatchScoreDate;
+    public TextField txtTeamAScore;
+    public TextField txtTeamBScore;
+    public Button btnSetMatchScore;
+    public TextField dtpRecordMatchScoreHour;
+    public TextField dtpRecordMatchScoreMinute;
     private Tournament tournament;
     public static final String filename = "./tournament.ser";
 
@@ -81,11 +89,11 @@ public class ServerApplication {
         }
     } // Working
     public void addTeam(ActionEvent actionEvent) {
-        tournament.addTeam(this.txtAddTeam.getText(), this.txtCountryName.getText());
+        tournament.addTeam(this.txtAddTeam.getText(), this.txtCountryNameToTeam.getText());
 
     } // Working
     public void addReferee(ActionEvent actionEvent) {
-        tournament.addReferee(this.txtRefereeName.getText(), this.txtCountryName.getText());
+        tournament.addReferee(this.txtRefereeName.getText(), this.txtCountryNameToRef.getText());
     } // Working
     public void addPlayer(ActionEvent actionEvent) {
         tournament.addPlayer(this.txtTeamName.getText(),this.txtPlayerName.getText(), Integer.parseInt(this.txtPlayerAge.getText()),
@@ -139,5 +147,10 @@ public class ServerApplication {
     public void addPlayerToMatch(ActionEvent actionEvent) {
         tournament.addPlayerToMatch(this.dtpAddPlayerMatchDate.getValue().atTime(Integer.parseInt(txtAddPlayerMatchTimeHour.getText()) ,Integer.parseInt(txtAddPlayerMatchTimeMin.getText())),
                 this.txtAddPlayerTeamName.getText(), this.txtAddPlayerPlayerName.getText());
+    }
+
+    public void setMatchScore(ActionEvent actionEvent) {
+        tournament.setMatchScore(this.dtpRecordMatchScoreDate.getValue().atTime(Integer.parseInt(dtpRecordMatchScoreHour.getText()) ,Integer.parseInt(dtpRecordMatchScoreMinute.getText())),
+                Integer.parseInt(this.txtTeamAScore.getText()), Integer.parseInt(this.txtTeamBScore.getText()));
     }
 }
