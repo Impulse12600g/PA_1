@@ -202,7 +202,7 @@ public class Tournament implements Serializable {
                 if(Objects.equals(r.getName(), refereeName)){
                     refFound = true;
                     for(Match m: listMatches){ // check for match in list
-                        if(m.getDateTime() == dateTime){
+                        if(m.getDateTime().isEqual(dateTime)){
                             matchFound = true;
                             m.addReferee(r);
                         }

@@ -89,7 +89,7 @@ public class ServerApplication {
 
 
     public void AddRefereeToMatch(ActionEvent actionEvent) {
-        tournament.addRefereeToMatch(this.dtpMatchDate.getValue().atTime(LocalTime.ofSecondOfDay(Integer.parseInt(this.txtTime.getText()))),
+        tournament.addRefereeToMatch(this.dtpMatchDate.getValue().atTime(Integer.parseInt(txtHour.getText()) ,Integer.parseInt(txtMinute.getText())),
                 this.txtRefereeName.getText());
 
     }
