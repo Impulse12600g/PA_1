@@ -52,10 +52,13 @@ public class ServerApplication {
 
     public void addCountry(ActionEvent actionEvent) {
         tournament.addCountry(this.txtCountryName.getText());
-        //System.out.println(tournament);
+        for(Country c: tournament.getParticipatingCountries()){
+            System.out.println(c.getCountryName());
+        }
     }
     public void addTeam(ActionEvent actionEvent) {
-        tournament.addTeam(this.txtTeamName.getText(), this.txtCountryName.getText());
+        tournament.addTeam(this.txtAddTeam.getText(), this.txtCountryName.getText());
+
     }
     public void addReferee(ActionEvent actionEvent) {
         tournament.addReferee(this.txtAddReferee.getText(), this.txtCountryName.getText());
@@ -67,8 +70,8 @@ public class ServerApplication {
     }
 
     public void addMatch(ActionEvent actionEvent) {
-        tournament.addMatch(this.dtpMatchDate.getValue().atTime(LocalTime.ofSecondOfDay(Integer.parseInt(this.txtTime.getText()))),
-                this.txtTeamA.getText(), this.txtTeamB.getText());//fixme
+    //    tournament.addMatch(this.dtpMatchDate.getValue().atTime(LocalTime.ofSecondOfDay(Integer.parseInt(this.txtTime.getText()))),
+//                this.txtTeamA.getText(), this.txtTeamB.getText());//fixme
         //Team object to string
         //tournament.addReferee();//country
     }

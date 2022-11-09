@@ -109,15 +109,20 @@ public class Tournament implements Serializable {
     // If not, loop through countries to find the matching country to assign team to
     // Add team to team list with participating country attribute
     public void addTeam(String teamName, String country){
-        for (Team t : this.listTeams) {
-            if (Objects.equals(t.getName(), teamName)) {
-                throw new IllegalArgumentException("Team is already in the list");
-            } else {
-                for (Country c : this.participatingCountries) {
-                    if (Objects.equals(c.getCountryName(), country))
-                        this.listTeams.add(new Team(teamName, c));
+        // loop through countries
+        for(Country c: this.participatingCountries){
+            // if we find the country
+            if(Objects.equals(c.getCountryName(), country)){
+                if(this.listTeams.isEmpty()){
+                    this.listTeams.add(new Team(teamName, c));
                 }
-            }
+                for(Team t: this.listTeams){
+                    if(Objects.equals(t.getName(), teamName)){throw new IllegalArgumentException("Team is already in the list");}
+                    else {
+                        this.listTeams.add(new Team(teamName, c));
+                    }
+                } // If we cannot find the country, throw an exception
+            } else {throw new IllegalArgumentException("Country not in the list");}
         }
     }
 

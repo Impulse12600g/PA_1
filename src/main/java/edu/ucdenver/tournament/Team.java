@@ -13,7 +13,6 @@ public class Team {
         this.country = country;
     }
     public Country getCountry(){//uml says getCounty
-
         return country;
     }
 
