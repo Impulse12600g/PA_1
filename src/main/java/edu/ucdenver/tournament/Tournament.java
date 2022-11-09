@@ -44,7 +44,7 @@ public class Tournament implements Serializable {
 
 
     public static Tournament loadFromFile(String fileName){ //TODO add file operations
-        Tournament tournament = null;
+        Tournament tournament;
         ObjectInputStream ois = null;
 
         try{
@@ -60,7 +60,6 @@ public class Tournament implements Serializable {
                 catch(IOException ioe){ioe.printStackTrace();}
             }
         }
-        //tournament = new Tournament();//Fixme how do we declare this constructor
         return tournament;
     }
     public void saveToFile(String fileName){

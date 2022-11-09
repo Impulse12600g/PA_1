@@ -137,12 +137,15 @@ public class ServerApplication {
     public void AddRefereeToMatch(ActionEvent actionEvent) {
         tournament.addRefereeToMatch(this.dtpMatchDate.getValue().atTime(Integer.parseInt(txtHour.getText()) ,Integer.parseInt(txtMinute.getText())),
                 this.txtRefereeName.getText());
-
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Referee added Successfully to match");
+        alert.show();
     }
 
     public void loadFromFile(ActionEvent actionEvent) {
         this.tournament = Tournament.loadFromFile(filename);
         this.initialize();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "File Loaded");
+        alert.show();
 
     }
     public void exitApplication(ActionEvent actionEvent) {
@@ -152,6 +155,8 @@ public class ServerApplication {
     }
     public void saveToFIle(ActionEvent actionEvent) {
         tournament.saveToFile(filename);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "File saved");
+        alert.show();
 
     }
 
