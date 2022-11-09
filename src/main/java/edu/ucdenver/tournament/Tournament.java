@@ -95,15 +95,6 @@ public class Tournament implements Serializable {
         }
     }
 
-//    public Team getTeam(String teamName) throws IllegalArgumentException{ // added getter for testing and setter
-//        for(Team t: this.listTeams){
-//            if((t.getName()).equals(teamName)){
-//                return t;
-//            }
-//        }
-//        return null;
-//    }
-
     // Requirement 5: Add a team representing a country
     // Try to get the team, if successful, the team is already there
     // If not, loop through countries to find the matching country to assign team to
@@ -127,13 +118,6 @@ public class Tournament implements Serializable {
             } else {throw new IllegalArgumentException("Country not in the list");}
         }
     }
-//
-//    public Referee getReferee(String name) throws IllegalArgumentException{
-//        for(Referee r: this.listReferees){
-//            if((r.getName()).equalsIgnoreCase(name)){return r;}
-//        }
-//        throw new IllegalArgumentException("Referee is not in the list");
-//    }
 
     // Requirement 6: Add referee to the tournament
     // Similar to add team. Check if the referee is already in the list or not
