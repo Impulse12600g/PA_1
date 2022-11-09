@@ -57,13 +57,13 @@ public class ServerApplication {
     public static final String filename = "./tournament.ser";
 
     public ServerApplication(){
-      //  tournament = new Tournament();
+        tournament = new Tournament(null, null, null);
         this.lstMatchesOn = new ListView<>();
 
     }
     public void initialize(){
         // Add initialize fields: Lists, combo boxes, etc
-       // this.lstMatchesOn.setItems(FXCollections.observableArrayList(tournament.getUpcomingMatches()));
+        this.lstMatchesOn.setItems(FXCollections.observableArrayList(tournament.getUpcomingMatches()));
 
     }
     public void addTournament(ActionEvent actionEvent) {
