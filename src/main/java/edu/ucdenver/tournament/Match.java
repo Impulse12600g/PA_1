@@ -48,35 +48,40 @@ public class Match {
         // Check if team is team A
         if(Objects.equals(team.getName(), this.teamA.getName())){
             // Check lineup size for < 11
-            if(lineupA.getPlayers().size() < 11) {
+            if(lineupA.getPlayers() != null) { // TODO it is breaking here.
                 // Check for player already on lineup
-                if(lineupA.getPlayers() == null){
-                    lineupA.addPlayer(player);
-                }
-                for(Player p: lineupA.getPlayers()){
-                    if(Objects.equals(p.getName(), player.getName())){
-                        throw new IllegalArgumentException("Player is already in match");
+                if(lineupA.getPlayers().size() < 11){
+                    for(Player p: lineupA.getPlayers()){
+                        if(Objects.equals(p.getName(), player.getName())){
+                            throw new IllegalArgumentException("Player is already in match");
+                        }
                     }
-                }
+                    lineupA.addPlayer(player);
+                }// Else, exception for more than 11
+                else throw new IllegalArgumentException("Cannot have more than 11 players");
+            } else {
                 // If player is not on lineup, add them
                 lineupA.addPlayer(player);
             }
-            // Else, exception for more than 11
-            else throw new IllegalArgumentException("Cannot have more than 11 players");
             // repeat for lineup B
         } else if(Objects.equals(team.getName(), this.teamB.getName())){
-            if(lineupB.getPlayers().size() < 11) {
-                if(lineupB.getPlayers() == null){
-                    lineupB.addPlayer(player);
-                }
-                for(Player p: lineupB.getPlayers()){
-                    if(Objects.equals(p.getName(), player.getName())){
-                        throw new IllegalArgumentException("Player is already in match");
+            // Check lineup size for < 11
+            if(lineupB.getPlayers() != null) { // TODO it is breaking here.
+                // Check for player already on lineup
+                if(lineupB.getPlayers().size() < 11){
+                    for(Player p: lineupB.getPlayers()){
+                        if(Objects.equals(p.getName(), player.getName())){
+                            throw new IllegalArgumentException("Player is already in match");
+                        }
                     }
-                }
+                    lineupB.addPlayer(player);
+                }// Else, exception for more than 11
+                else throw new IllegalArgumentException("Cannot have more than 11 players");
+            } else {
+                // If player is not on lineup, add them
                 lineupB.addPlayer(player);
             }
-            else throw new IllegalArgumentException("Cannot have more than 11 players");
+
         } else throw new IllegalArgumentException("Could not find team"); // If neither work, couldn't find team
 
     }
