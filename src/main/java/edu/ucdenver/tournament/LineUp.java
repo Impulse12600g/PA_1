@@ -8,12 +8,14 @@ public class LineUp {
     private Team team;
     public LineUp(Team team){
         this.team = team;
+        this.listOfPlayers = new ArrayList<>();
     }
     public Team getTeam(){
         return team;
     }
     public List<Player> getPlayers(){
-        return listOfPlayers;
+        if(listOfPlayers.isEmpty()) return null;
+        else return new ArrayList<>(this.listOfPlayers);
     }
     public void addPlayer(Player player){
         this.listOfPlayers.add(player);

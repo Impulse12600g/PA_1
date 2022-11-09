@@ -14,7 +14,7 @@ public class Match {
     LineUp lineupB;
     Team teamA;
     Team teamB;
-    private ArrayList<Referee> listReferees; // TODO CHECK TO MAKE SURE THIS IS NEEDED for get refs list
+    private ArrayList<Referee> listReferees;
 
     public Match(LocalDateTime dateTime, Team teamA, Team teamB){
         this.dateTime=dateTime;
@@ -22,7 +22,7 @@ public class Match {
         this.teamB = teamB;
         lineupA = new LineUp(teamA);
         lineupB = new LineUp(teamB);
-        this.listReferees = new ArrayList<>(); // TODO CHECK TO MAKE SURE THIS IS NEEDED for get refs list
+        this.listReferees = new ArrayList<>();
 
     }
     public LineUp getTeamA(){return lineupA;}
@@ -51,7 +51,11 @@ public class Match {
         else if(l.getTeam() == this.teamB && lineupB.getPlayers().size() < 11){lineupB.addPlayer(player);}
         else{throw new IllegalArgumentException("Player is already on team");}
     }
-    public List<Referee> getReferees(){return new ArrayList<>(listReferees);}
+    public List<Referee> getReferees(){
+        if(listReferees.isEmpty()) return null;
+        else return new ArrayList<>(this.listReferees);
+
+    }
     public void addReferee(Referee referee){
         // Match referee requirement -> only four in a match
         // Referee cannot share team's country
