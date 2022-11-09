@@ -32,16 +32,29 @@ public class ServerApplication {
     public Button btnAddRefereeToMatch;
     public TextField txtHour;
     public TextField txtMinute;
+    public TextField txtTournament;
+    public Button btnAddTournament;
+    public TextField txtTourEndHour;
+    public TextField txtTourEndMin;
+    public TextField txtTourStartHour;
+    public TextField txtTourStartMin;
+    public DatePicker dtpTourStartDate;
+    public DatePicker dtpTourEndDate;
+    public Button btnLoadFromFile;
+    public Button btnExit;
+    public Button btnSaveToFIle;
     private Tournament tournament;
+    public static final String filename = "./tournament.ser";
 
     public ServerApplication(){
-        LocalDateTime localDateTime1 = LocalDateTime.of(
-                2024, 04, 24, 14, 33, 48, 123456789);
-        LocalDateTime localDateTime2 = LocalDateTime.of(
-                2024, 05, 24, 14, 33, 48, 123456789);
+      //  tournament = new Tournament();
 
+    }
+    public void addTournament(ActionEvent actionEvent) {
+        tournament = new Tournament(this.txtTournament.getText(),
+                this.dtpTourStartDate.getValue().atTime(Integer.parseInt(txtTourStartHour.getText()) ,Integer.parseInt(txtTourStartMin.getText())),
+                this.dtpTourEndDate.getValue().atTime(Integer.parseInt(txtTourEndHour.getText()) ,Integer.parseInt(txtTourEndMin.getText())));
 
-        tournament = new Tournament("world cup", localDateTime1, localDateTime2);
 
     }
 
@@ -89,6 +102,23 @@ public class ServerApplication {
     public void AddRefereeToMatch(ActionEvent actionEvent) {
         tournament.addRefereeToMatch(this.dtpMatchDate.getValue().atTime(Integer.parseInt(txtHour.getText()) ,Integer.parseInt(txtMinute.getText())),
                 this.txtRefereeName.getText());
+
+    }
+    public void initialize(){
+
+    }
+
+    public void loadFromFile(ActionEvent actionEvent) {
+        tournament.loadFromFile(filename);
+
+    }
+
+    public void exitApplication(ActionEvent actionEvent) {
+
+    }
+
+    public void saveToFIle(ActionEvent actionEvent) {
+        tournament.saveToFile(filename);
 
     }
 }

@@ -18,8 +18,6 @@ public class Tournament implements Serializable {
     private ArrayList<Match> listMatches;
 
 
-    public static final String filename = "./tournament.ser";//load/save double check w javi
-
     public Tournament(String name, LocalDateTime startDate, LocalDateTime endDate){
         this.name = name;
         this.startDate = startDate;
@@ -46,33 +44,52 @@ public class Tournament implements Serializable {
 
 
     public void loadFromFile(String fileName){ //TODO add file operations
+        Tournament tournament = null;
+        ObjectInputStream ois = null;
+
         try{
-            File file = new File(fileName);
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            String string;
-            while((string = reader.readLine()) != null){
-                // Do something with the file here
-                System.out.println("Doing file stuff");
+            ois = new ObjectInputStream(new FileInputStream(fileName));
+            tournament = (Tournament) ois.readObject();
+        }
+        catch(Exception e){
+            throw new IllegalArgumentException("Cant be empty");
+        }
+        finally {
+            if(ois != null){
+                try{
+                    ois.close();
+
+                }
+                catch(IOException ioe){
+                    ioe.printStackTrace();
+                }
             }
-            reader.close();
-        } catch(Exception e){
-            System.out.println("File does not exist");
-            e.printStackTrace();
         }
-
+        //tournament = new Tournament();
     }
-    public void saveToFile(String fineName){ //TODO finish file manipulation
-        String things = "PLACEHOLDER"; // figure out what to write to file
+    public void saveToFile(String fileName){ //TODO finish file manipulation
+        ObjectOutputStream oos = null;
+
         try{
-            FileWriter writer = new FileWriter(fineName, false);
-            writer.write(things);
-            writer.close();
-            System.out.println("Successfully overwritten file");
-        } catch(IOException e){
-            e.printStackTrace();
+            oos = new ObjectOutputStream(new FileOutputStream(fileName));
+            oos.writeObject(this);
         }
-
+        catch(IOException ioe){
+            ioe.printStackTrace();
+        }
+        finally {
+            if(oos != null){
+                try{
+                    oos.close();
+                }
+                catch(IOException ioe){
+                    ioe.printStackTrace();
+                }
+            }
+        }
     }
+
+
     // requirement 4: Add participating country
     // Will check if the country is already on the list
     // Add new country to the list if not
