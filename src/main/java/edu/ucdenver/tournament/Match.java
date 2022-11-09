@@ -5,6 +5,7 @@ import javax.sound.sampled.Line;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Match {
     private LocalDateTime dateTime;
@@ -43,13 +44,35 @@ public class Match {
         // check if player is on team with LineUp listOfPlayers list
         // add if not
         // throw exception if player is in it
-        // TODO: test check for 11 players
-        LineUp l = new LineUp(team);
-        // check if team A
-        if(l.getTeam() == this.teamA && lineupA.getPlayers().size() < 11){lineupA.addPlayer(player);}
-        // Check if team B
-        else if(l.getTeam() == this.teamB && lineupB.getPlayers().size() < 11){lineupB.addPlayer(player);}
-        else{throw new IllegalArgumentException("Player is already on team");}
+
+        // Check if team is team A
+        if(Objects.equals(team.getName(), this.teamA.getName())){
+            // Check lineup size for < 11
+            if(lineupA.getPlayers().size() < 11) {
+                // Check for player already on lineup
+                for(Player p: lineupA.getPlayers()){
+                    if(Objects.equals(p.getName(), player.getName())){
+                        throw new IllegalArgumentException("Player is already in match");
+                    }
+                }
+                // If player is not on lineup, add them
+                lineupA.addPlayer(player);
+            }
+            // Else, exception for more than 11
+            else throw new IllegalArgumentException("Cannot have more than 11 players");
+            // repeat for lineup B
+        } else if(Objects.equals(team.getName(), this.teamB.getName())){
+            if(lineupB.getPlayers().size() < 11) {
+                for(Player p: lineupB.getPlayers()){
+                    if(Objects.equals(p.getName(), player.getName())){
+                        throw new IllegalArgumentException("Player is already in match");
+                    }
+                }
+                lineupB.addPlayer(player);
+            }
+            else throw new IllegalArgumentException("Cannot have more than 11 players");
+        } else throw new IllegalArgumentException("Could not find team"); // If neither work, couldn't find team
+
     }
     public List<Referee> getReferees(){
         if(listReferees.isEmpty()) return null;
