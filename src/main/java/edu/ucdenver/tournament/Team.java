@@ -11,13 +11,15 @@ public class Team {
     public Team(String name, Country country){
         this.name = name;
         this.country = country;
+        this.squad = new ArrayList<>();
     }
     public Country getCountry(){//uml says getCounty
         return country;
     }
 
     public List<Player> getSquad(){
-        return new ArrayList<>(this.squad);
+        if(squad.isEmpty()) return null;
+        else return new ArrayList<>(this.squad);
     }
 
     public void addPlayer(String name, int age, double height, double weight){
