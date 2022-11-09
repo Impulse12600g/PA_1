@@ -48,7 +48,7 @@ public class Match {
         // Check if team is team A
         if(Objects.equals(team.getName(), this.teamA.getName())){
             // Check lineup size for < 11
-            if(lineupA.getPlayers() != null) { // TODO it is breaking here.
+            if(lineupA.getPlayers() != null) {
                 // Check for player already on lineup
                 if(lineupA.getPlayers().size() < 11){
                     for(Player p: lineupA.getPlayers()){
@@ -66,7 +66,7 @@ public class Match {
             // repeat for lineup B
         } else if(Objects.equals(team.getName(), this.teamB.getName())){
             // Check lineup size for < 11
-            if(lineupB.getPlayers() != null) { // TODO it is breaking here.
+            if(lineupB.getPlayers() != null) {
                 // Check for player already on lineup
                 if(lineupB.getPlayers().size() < 11){
                     for(Player p: lineupB.getPlayers()){
