@@ -78,27 +78,36 @@ public class ServerApplication {
         tournament = new Tournament(this.txtTournament.getText(),
                 this.dtpTourStartDate.getValue().atTime(Integer.parseInt(txtTourStartHour.getText()) ,Integer.parseInt(txtTourStartMin.getText())),
                 this.dtpTourEndDate.getValue().atTime(Integer.parseInt(txtTourEndHour.getText()) ,Integer.parseInt(txtTourEndMin.getText())));
-
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Tournament added Successfully");
+        alert.show();
 
     }
 
     public void addCountry(ActionEvent actionEvent) {
         tournament.addCountry(this.txtCountryName.getText());
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Country added Successfully");
+        alert.show();
         for(Country c: tournament.getParticipatingCountries()){
             System.out.println(c.getCountryName());
         }
     } // Working
     public void addTeam(ActionEvent actionEvent) {
         tournament.addTeam(this.txtAddTeam.getText(), this.txtCountryNameToTeam.getText());
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Team added Successfully");
+        alert.show();
 
     } // Working
     public void addReferee(ActionEvent actionEvent) {
         tournament.addReferee(this.txtRefereeName.getText(), this.txtCountryNameToRef.getText());
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Referee added Successfully");
+        alert.show();
     } // Working
     public void addPlayer(ActionEvent actionEvent) {
         tournament.addPlayer(this.txtTeamName.getText(),this.txtPlayerName.getText(), Integer.parseInt(this.txtPlayerAge.getText()),
                 Double.parseDouble(this.txtPlayerHeight.getText()), Double.parseDouble(this.txtPlayerWeight.getText()));
         System.out.println(tournament);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Player added Successfully");
+        alert.show();
     } // Working
     public void addMatch(ActionEvent actionEvent) {
         Team teamA = null;
@@ -119,6 +128,8 @@ public class ServerApplication {
         }
         tournament.addMatch(this.dtpMatchDate.getValue().atTime(Integer.parseInt(txtHour.getText()) ,Integer.parseInt(txtMinute.getText())),
                 teamA, teamB);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Match added Successfully");
+        alert.show();
         //Team object to string
         //tournament.addReferee();//country
     } // Working

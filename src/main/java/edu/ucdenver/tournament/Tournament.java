@@ -293,7 +293,7 @@ public class Tournament implements Serializable {
     // List the date/time, and name of the two teams for each game
     //FIXME: Currently making a list of matches that are upcoming, do we call the specific output required
     // here or in the GUI?
-    public List<Match> getUpcomingMatches(){
+    public ArrayList<Match> getUpcomingMatches(){
         ArrayList<Match> upcoming = new ArrayList<>();
         for(Match m: listMatches){
             if(m.isUpcoming()){
