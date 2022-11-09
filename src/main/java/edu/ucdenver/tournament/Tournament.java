@@ -65,7 +65,7 @@ public class Tournament implements Serializable {
                 }
             }
         }
-        //tournament = new Tournament();
+        //tournament = new Tournament();//Fixme how do we declare this constructor
     }
     public void saveToFile(String fileName){ //TODO finish file manipulation
         ObjectOutputStream oos = null;

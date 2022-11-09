@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -43,6 +44,12 @@ public class ServerApplication {
     public Button btnLoadFromFile;
     public Button btnExit;
     public Button btnSaveToFIle;
+    public TextField txtAddPlayerTeamName;
+    public TextField txtAddPlayerPlayerName;
+    public TextField txtAddPlayerMatchTimeHour;
+    public TextField txtAddPlayerMatchTimeMin;
+    public DatePicker dtpAddPlayerMatchDate;
+    public Button btnAddPlayerToMatch;
     private Tournament tournament;
     public static final String filename = "./tournament.ser";
 
@@ -107,18 +114,22 @@ public class ServerApplication {
     public void initialize(){
 
     }
-
     public void loadFromFile(ActionEvent actionEvent) {
         tournament.loadFromFile(filename);
 
     }
-
     public void exitApplication(ActionEvent actionEvent) {
+        Stage stage = (Stage) this.btnExit.getScene().getWindow();
+        stage.close();
 
     }
-
     public void saveToFIle(ActionEvent actionEvent) {
         tournament.saveToFile(filename);
 
+    }
+
+    public void addPlayerToMatch(ActionEvent actionEvent) {
+        tournament.addPlayerToMatch(this.dtpAddPlayerMatchDate.getValue().atTime(Integer.parseInt(txtAddPlayerMatchTimeHour.getText()) ,Integer.parseInt(txtAddPlayerMatchTimeMin.getText())),
+                this.txtAddPlayerTeamName.getText(), this.txtAddPlayerPlayerName.getText());
     }
 }
