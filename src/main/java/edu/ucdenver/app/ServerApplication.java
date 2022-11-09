@@ -26,6 +26,8 @@ public class ServerApplication {
     public TextField txtTime;
     public TextField txtRefereeName;
     public Button btnAddReferee;
+    public Button btnAddTeam;
+    public TextField txtAddTeam;
     private Tournament tournament;
 
     public ServerApplication(){
@@ -51,23 +53,25 @@ public class ServerApplication {
         tournament.addCountry(this.txtCountryName.getText());
         //System.out.println(tournament);
     }
-
-
+    public void addTeam(ActionEvent actionEvent) {
+        tournament.addTeam(this.txtTeamName.getText(), this.txtCountryName.getText());
+    }
+    public void addReferee(ActionEvent actionEvent) {
+        tournament.addReferee(this.txtAddReferee.getText(), this.txtCountryName.getText());
+    }
     public void addPlayer(ActionEvent actionEvent) {
         tournament.addPlayer(this.txtTeamName.getText(),this.txtPlayerName.getText(), Integer.parseInt(this.txtPlayerAge.getText()),
                 Double.parseDouble(this.txtPlayerHeight.getText()), Double.parseDouble(this.txtPlayerWeight.getText()));
         System.out.println(tournament);
     }
-/*
-    public void AddMatch(ActionEvent actionEvent) {
+
+    public void addMatch(ActionEvent actionEvent) {
         tournament.addMatch(this.dtpMatchDate.getValue().atTime(LocalTime.ofSecondOfDay(Integer.parseInt(this.txtTime.getText()))),
                 this.txtTeamA.getText(), this.txtTeamB.getText());//fixme
         //Team object to string
         //tournament.addReferee();//country
     }
 
-    public void addReferee(ActionEvent actionEvent) {
-    }
 
- */
+
 }
