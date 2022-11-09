@@ -3,10 +3,8 @@ package edu.ucdenver.app;
 import edu.ucdenver.tournament.*;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.event.Event;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.time.LocalDateTime;
@@ -61,6 +59,8 @@ public class ServerApplication {
     public Button btnSetMatchScore;
     public TextField dtpRecordMatchScoreHour;
     public TextField dtpRecordMatchScoreMinute;
+    public Button btngetUpcomingMatches;
+    public Tab tabUpcomingMatches;
     private Tournament tournament;
     public static final String filename = "./tournament.ser";
 
@@ -152,5 +152,12 @@ public class ServerApplication {
     public void setMatchScore(ActionEvent actionEvent) {
         tournament.setMatchScore(this.dtpRecordMatchScoreDate.getValue().atTime(Integer.parseInt(dtpRecordMatchScoreHour.getText()) ,Integer.parseInt(dtpRecordMatchScoreMinute.getText())),
                 Integer.parseInt(this.txtTeamAScore.getText()), Integer.parseInt(this.txtTeamBScore.getText()));
+    }
+
+    public void getUpcomingMatches(Event event) {
+        if(this.tabUpcomingMatches.isSelected()) {
+            this.lstMatchesOn.setItems(FXCollections.observableArrayList(tournament.getUpcomingMatches()));
+        }
+
     }
 }
