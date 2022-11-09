@@ -50,6 +50,9 @@ public class Match {
             // Check lineup size for < 11
             if(lineupA.getPlayers().size() < 11) {
                 // Check for player already on lineup
+                if(lineupA.getPlayers() == null){
+                    lineupA.addPlayer(player);
+                }
                 for(Player p: lineupA.getPlayers()){
                     if(Objects.equals(p.getName(), player.getName())){
                         throw new IllegalArgumentException("Player is already in match");
@@ -63,6 +66,9 @@ public class Match {
             // repeat for lineup B
         } else if(Objects.equals(team.getName(), this.teamB.getName())){
             if(lineupB.getPlayers().size() < 11) {
+                if(lineupB.getPlayers() == null){
+                    lineupB.addPlayer(player);
+                }
                 for(Player p: lineupB.getPlayers()){
                     if(Objects.equals(p.getName(), player.getName())){
                         throw new IllegalArgumentException("Player is already in match");
