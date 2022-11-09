@@ -2,12 +2,13 @@ package edu.ucdenver.tournament;
 
 import javax.imageio.IIOException;
 import javax.sound.sampled.Line;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Match {
+public class Match implements Serializable {
     private LocalDateTime dateTime;
     private int scoreTeamA;
     private int scoreTeamB;

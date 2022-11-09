@@ -1,9 +1,11 @@
 package edu.ucdenver.app;
 
 import edu.ucdenver.tournament.*;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -50,11 +52,18 @@ public class ServerApplication {
     public TextField txtAddPlayerMatchTimeMin;
     public DatePicker dtpAddPlayerMatchDate;
     public Button btnAddPlayerToMatch;
+    public ListView <Match> lstMatchesOn;
     private Tournament tournament;
     public static final String filename = "./tournament.ser";
 
     public ServerApplication(){
       //  tournament = new Tournament();
+        this.lstMatchesOn = new ListView<>();
+
+    }
+    public void initialize(){
+        // Add initialize fields: Lists, combo boxes, etc
+       // this.lstMatchesOn.setItems(FXCollections.observableArrayList(tournament.getUpcomingMatches()));
 
     }
     public void addTournament(ActionEvent actionEvent) {
@@ -111,11 +120,10 @@ public class ServerApplication {
                 this.txtRefereeName.getText());
 
     }
-    public void initialize(){
 
-    }
     public void loadFromFile(ActionEvent actionEvent) {
-        tournament.loadFromFile(filename);
+        this.tournament = Tournament.loadFromFile(filename);
+        this.initialize();
 
     }
     public void exitApplication(ActionEvent actionEvent) {

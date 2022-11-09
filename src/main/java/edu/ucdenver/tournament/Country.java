@@ -1,6 +1,8 @@
 package edu.ucdenver.tournament;
 
-public class Country {
+import java.io.Serializable;
+
+public class Country implements Serializable {
     private String countryName;
 
     public Country(String countryName){

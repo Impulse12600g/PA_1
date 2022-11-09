@@ -1,6 +1,8 @@
 package edu.ucdenver.tournament;
 
-public class Referee {
+import java.io.Serializable;
+
+public class Referee implements Serializable {
     private String name;
     private Country country;
 

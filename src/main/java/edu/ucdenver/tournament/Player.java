@@ -1,6 +1,8 @@
 package edu.ucdenver.tournament;
 
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Serializable {
     private String name;
     private int age;
     private double height;

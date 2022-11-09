@@ -1,9 +1,10 @@
 package edu.ucdenver.tournament;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Team {
+public class Team implements Serializable {
     private String name;
     private ArrayList<Player> squad;
     private Country country;
