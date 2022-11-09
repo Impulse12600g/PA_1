@@ -61,7 +61,7 @@ public class ServerApplication {
 
     }
     public void addReferee(ActionEvent actionEvent) {
-        tournament.addReferee(this.txtAddReferee.getText(), this.txtCountryName.getText());
+        tournament.addReferee(this.txtRefereeName.getText(), this.txtCountryName.getText());
     }
     public void addPlayer(ActionEvent actionEvent) {
         tournament.addPlayer(this.txtTeamName.getText(),this.txtPlayerName.getText(), Integer.parseInt(this.txtPlayerAge.getText()),

@@ -127,29 +127,35 @@ public class Tournament implements Serializable {
             } else {throw new IllegalArgumentException("Country not in the list");}
         }
     }
-
-    public Referee getReferee(String name) throws IllegalArgumentException{
-        for(Referee r: this.listReferees){
-            if((r.getName()).equalsIgnoreCase(name)){return r;}
-        }
-        throw new IllegalArgumentException("Referee is not in the list");
-    }
+//
+//    public Referee getReferee(String name) throws IllegalArgumentException{
+//        for(Referee r: this.listReferees){
+//            if((r.getName()).equalsIgnoreCase(name)){return r;}
+//        }
+//        throw new IllegalArgumentException("Referee is not in the list");
+//    }
 
     // Requirement 6: Add referee to the tournament
     // Similar to add team. Check if the referee is already in the list or not
     // If not -> assign to the referee list with their assigned country
     public void addReferee (String name, String country){
-        Referee referee = null;
-        try{
-            referee = this.getReferee(name);
-        } catch (IllegalArgumentException e){
-            for(Country c: participatingCountries){
-                if(Objects.equals(c.getCountryName(), country))
+        // check for country
+        for(Country c: this.participatingCountries){
+            // if we find the country
+            if(Objects.equals(c.getCountryName(), country)){
+                // add if the list is empty
+                if(this.listReferees.isEmpty()){
                     this.listReferees.add(new Referee(name, c));
-            }
-        }
-        if(referee != null){
-            throw new IllegalArgumentException("Referee is already in the list");
+                } else {
+                    for(Referee r: this.listReferees){
+                        if(Objects.equals(r.getName(), name)){
+                            throw new IllegalArgumentException("Referee is already in the tournament");
+                        } else {
+                            this.listReferees.add(new Referee(name, c));
+                        }
+                    }
+                }
+            } else {throw new IllegalArgumentException("Country not in the list");}
         }
     }
 
