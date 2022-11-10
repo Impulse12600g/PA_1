@@ -109,4 +109,6 @@ public class Match implements Serializable {
         this.scoreTeamA = scoreTeamA;
         this.scoreTeamB = scoreTeamB;
     }
+    public int getScoreTeamA(){return this.scoreTeamA;}
+    public int getScoreTeamB(){return this.scoreTeamB;}
 }

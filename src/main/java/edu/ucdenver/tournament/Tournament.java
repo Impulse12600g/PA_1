@@ -295,13 +295,11 @@ public class Tournament implements Serializable {
 
     // TODO: Requirement 12: List of upcoming matching
     // List the date/time, and name of the two teams for each game
-    //FIXME: Currently making a list of matches that are upcoming, do we call the specific output required
-    // here or in the GUI?
-    public ArrayList<Match> getUpcomingMatches(){
-        ArrayList<Match> upcoming = new ArrayList<>();
+    public ArrayList<String> getUpcomingMatches(){
+        ArrayList<String> upcoming = new ArrayList<>();
         for(Match m: listMatches){
             if(m.isUpcoming()){
-                upcoming.add(m);
+                upcoming.add(m.lineupA.getTeam().getName() + " vs " + m.lineupB.getTeam().getName() + " at " + m.getDateTime());
             }
         }
         return upcoming;
@@ -309,27 +307,41 @@ public class Tournament implements Serializable {
 
     // Requirement 13: Get list of matches on a particular date, without time
     // TODO: TEST
-    public List<Match> getMatchesOn(LocalDate date){
-        ArrayList<Match> matchesOn = new ArrayList<>();
+    public List<String> getMatchesOn(LocalDate date){
+        ArrayList<String> matchesOn = new ArrayList<>();
         for(Match m: listMatches){
             if(m.getDate().equals(date)){
-                matchesOn.add(m);
+                matchesOn.add(m.lineupA.getTeam().getName() + " vs " + m.lineupB.getTeam().getName() + " at " + m.getDate());
             }
         }
         return matchesOn;
     }
     // Requirement 14: Get list of all games for a specific team, past matches include the score
     // TODO: TEST
-    public List<Match> getMatchesFor(String teamName){
-        ArrayList<Match> matchesForTeam = new ArrayList<>();
+    public List<String> getMatchesFor(String teamName){
+        ArrayList<String> matchesForTeam = new ArrayList<>();
         for(Match m: listMatches){
             // check for team A
             if(Objects.equals(m.teamA.getName(), teamName)){
-                matchesForTeam.add(m);
+                // Check if the match is in the future and show match date and time instead of score
+                if(m.getDateTime().isAfter(LocalDateTime.now())){
+                    matchesForTeam.add(m.lineupA.getTeam().getName() + " vs " + m.lineupB.getTeam().getName() +
+                            " They play on: " + m.getDateTime());
+                } else { // include score for past matches
+                    matchesForTeam.add(m.lineupA.getTeam().getName() + " vs " + m.lineupB.getTeam().getName() +
+                            " Score of: " + m.getScoreTeamA() + " to " + m.getScoreTeamB());
+                }
                 }
                 // Check for team B
              else if(Objects.equals(m.teamB.getName(), teamName)){
-                matchesForTeam.add(m);
+                // Check if the match is in the future and show match date and time instead of score
+                if(m.getDateTime().isAfter(LocalDateTime.now())) {
+                    matchesForTeam.add(m.lineupA.getTeam().getName() + " vs " + m.lineupB.getTeam().getName() +
+                            " They play on: " + m.getDateTime());
+                } else { // include score for past matches
+                    matchesForTeam.add(m.lineupA.getTeam().getName() + " vs " + m.lineupB.getTeam().getName() +
+                            " Score of: " + m.getScoreTeamA() + " to " + m.getScoreTeamB());
+                }
                 }
         }
         // If no teams were added throw exception
@@ -341,13 +353,13 @@ public class Tournament implements Serializable {
     }
     // Requirement 15: Get the lineups for a match (either past of future)
     // TODO: TEST
-    public List<LineUp> getMatchLineUps(LocalDateTime date){
-        ArrayList<LineUp> lineUps = new ArrayList<>();
+    public List<String> getMatchLineUps(LocalDateTime date){
+        ArrayList<String> lineUps = new ArrayList<>();
         for(Match m: listMatches){
             // Add both lineups to arraylist if the match is on the given date
             if(m.getDateTime().equals(date)){
-                lineUps.add(m.lineupA);
-                lineUps.add(m.lineupB);
+                lineUps.add(m.lineupA.getTeam().getName() + " vs " + m.lineupB.getTeam().getName());
+//                lineUps.add(m.lineupB.getTeam().getName());
             }
         }
         // If no lineups were added throw exception

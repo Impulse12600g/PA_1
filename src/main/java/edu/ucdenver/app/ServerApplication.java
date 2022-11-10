@@ -48,7 +48,7 @@ public class ServerApplication {
     public TextField txtAddPlayerMatchTimeMin;
     public DatePicker dtpAddPlayerMatchDate;
     public Button btnAddPlayerToMatch;
-    public ListView <Match> lstMatchesOn;
+    public ListView <String> lstMatchesOn;
     public TextField txtCountryNameToTeam;
     public TextField txtCountryNameToRef;
     public DatePicker dtpRecordMatchScoreDate;
