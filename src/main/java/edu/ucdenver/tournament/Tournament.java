@@ -279,12 +279,12 @@ public class Tournament implements Serializable {
     public void setMatchScore(LocalDateTime dateTime, int teamAScore, int teamBScore){//uml gives just variable types
         for(Match m: listMatches){
             // find the match that matches the dateTime
-            if(m.getDateTime() == dateTime){
+            if(m.getDateTime().equals(dateTime)){
                 if(!m.isUpcoming()){
                     // set the score if match is not upcoming, throw exception if it hasn't happened yet
                     m.setMatchScore(teamAScore, teamBScore);
                 } else {throw new IllegalArgumentException("Match has not happened yet");}
-            } else {throw new IllegalArgumentException("Match could not be found at that time");}
+            }
         }
     }
 
