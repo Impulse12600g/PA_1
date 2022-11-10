@@ -304,10 +304,10 @@ public class Tournament implements Serializable {
 
     // Requirement 13: Get list of matches on a particular date, without time
     // TODO: TEST
-    public List<Match> getMatchesOn(LocalDateTime date){
+    public List<Match> getMatchesOn(LocalDate date){
         ArrayList<Match> matchesOn = new ArrayList<>();
         for(Match m: listMatches){
-            if(m.getDateTime() == date){
+            if(m.getDate().equals(date)){
                 matchesOn.add(m);
             }
         }
@@ -340,7 +340,7 @@ public class Tournament implements Serializable {
         ArrayList<LineUp> lineUps = new ArrayList<>();
         for(Match m: listMatches){
             // Add both lineups to arraylist if the match is on the given date
-            if(m.getDateTime() == date){
+            if(m.getDateTime().equals(date)){
                 lineUps.add(m.lineupA);
                 lineUps.add(m.lineupB);
             }

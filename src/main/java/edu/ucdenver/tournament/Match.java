@@ -3,6 +3,7 @@ package edu.ucdenver.tournament;
 import javax.imageio.IIOException;
 import javax.sound.sampled.Line;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -85,6 +86,9 @@ public class Match implements Serializable {
 
         } else throw new IllegalArgumentException("Could not find team"); // If neither work, couldn't find team
 
+    }
+    public LocalDate getDate(){
+        return this.getDateTime().toLocalDate();
     }
     public List<Referee> getReferees(){
         if(listReferees.isEmpty()) return null;
