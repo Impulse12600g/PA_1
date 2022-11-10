@@ -65,6 +65,11 @@ public class ServerApplication {
     public DatePicker dtpDayOfMatch;
     public Button btnFindMatch;
     public ListView<Object> lstMatch;
+    public DatePicker dtpDateOfMatches;
+    public TextField txtTimeOfMatchHour;
+    public TextField txtTimeOfMatchMin;
+    public ListView<Object> lstOfLineups;
+    public Button btnListOfLineups;
     private Tournament tournament;
     public static final String filename = "./tournament.ser";
 
@@ -176,16 +181,25 @@ public class ServerApplication {
 
     public void getUpcomingMatches(Event event) {
         if(this.tabUpcomingMatches.isSelected()) {
-            this.lstMatch.setItems(FXCollections.observableArrayList(tournament.getUpcomingMatches()));
+            this.lstMatch.setItems(FXCollections.observableArrayList
+                    (tournament.getUpcomingMatches()));
         } lstMatch.refresh();
     }
 
     public void getMatchesOn(ActionEvent actionEvent) {
-        this.lstMatchesOn.setItems(FXCollections.observableArrayList(tournament.getMatchesOn(this.dtpDayOfMatch.getValue())));
+        this.lstMatchesOn.setItems(FXCollections.observableArrayList
+                (tournament.getMatchesOn(this.dtpDayOfMatch.getValue())));
     }
 
     public void getMatchesFor(ActionEvent actionEvent) {
-        this.lstMatchesPerTeam.setItems(FXCollections.observableArrayList(tournament.getMatchesFor(this.txtTeamNameMatches.getText())));
+        this.lstMatchesPerTeam.setItems(FXCollections.observableArrayList
+                (tournament.getMatchesFor(this.txtTeamNameMatches.getText())));
     }
 
+    public void getMatchLineUps(ActionEvent actionEvent) {
+        this.lstOfLineups.setItems(FXCollections.observableArrayList
+                (tournament.getMatchLineUps(this.dtpDateOfMatches.getValue()
+                        .atTime(Integer.parseInt(txtTimeOfMatchHour.getText()),
+                                Integer.parseInt(txtTimeOfMatchMin.getText())))));
+    }
 }
