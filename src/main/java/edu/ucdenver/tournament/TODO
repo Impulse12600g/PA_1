@@ -1,5 +1,4 @@
-- Change pointers to have string assignments (build toString method and overwrites) ## HARD MAYBE
-- Update comments
+
 - Create readme
 - Insert instructions for testing to GUI
         - ex: in add country, note to have three countries (one for each team, and one for the refs)
