@@ -87,6 +87,7 @@ public class ServerApplication {
         tournament = new Tournament(this.txtTournament.getText(),
                 this.dtpTourStartDate.getValue().atTime(Integer.parseInt(txtTourStartHour.getText()) ,Integer.parseInt(txtTourStartMin.getText())),
                 this.dtpTourEndDate.getValue().atTime(Integer.parseInt(txtTourEndHour.getText()) ,Integer.parseInt(txtTourEndMin.getText())));
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Tournament added Successfully");
         alert.show();
 

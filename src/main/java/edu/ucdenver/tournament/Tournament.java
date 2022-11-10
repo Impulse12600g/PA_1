@@ -61,7 +61,7 @@ public class Tournament implements Serializable {
             }
         }
         return tournament;
-    }
+    } // Working
     public void saveToFile(String fileName){
         ObjectOutputStream oos = null;
 
@@ -83,7 +83,6 @@ public class Tournament implements Serializable {
             }
         }
     } // Working
-
 
     // requirement 4: Add participating country
     // Will check if the country is already on the list

@@ -1,1 +1,2 @@
-- Displays for client UI for all lists (requirements 12 - 15) in PA pdf
+- Change pointers to have string assignments (build toString method and overwrites)
+- Update comments

@@ -66,7 +66,6 @@ public class Server implements Runnable{
             displayMessage("Cannot open the server");
             ioe.printStackTrace();
         }
-
     }
 
     public static void shutdown() throws IOException {
