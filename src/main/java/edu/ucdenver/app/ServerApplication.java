@@ -61,6 +61,11 @@ public class ServerApplication {
     public TextField dtpRecordMatchScoreMinute;
     public Button btngetUpcomingMatches;
     public Tab tabUpcomingMatches;
+    public TextField txtTeamNameMatches;
+    public Button btnFindMatchesTeam;
+    public ListView lstMatchesPerTeam;
+    public DatePicker dtpDayOfMatch;
+    public Button btnFindMatch;
     private Tournament tournament;
     public static final String filename = "./tournament.ser";
 
@@ -174,6 +179,11 @@ public class ServerApplication {
         if(this.tabUpcomingMatches.isSelected()) {
             this.lstMatchesOn.setItems(FXCollections.observableArrayList(tournament.getUpcomingMatches()));
         } lstMatchesOn.refresh();
+    }
 
+    public void getMatchesFor(ActionEvent actionEvent) {
+    }
+
+    public void getMatchesOn(ActionEvent actionEvent) {
     }
 }
