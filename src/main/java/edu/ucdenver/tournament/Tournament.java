@@ -30,12 +30,7 @@ public class Tournament implements Serializable {
         this.listReferees = new ArrayList<>();
         this.listMatches = new ArrayList<>();
 
-        // TODO potential exception handling if there is already a tournament at start date and end date
     }
-
-
-    //fixme TEMPORARY CONSTRUCTOR FOR
-    //public Tournament() {}
 
     public ArrayList<Country> getParticipatingCountries(){return participatingCountries;}
     public ArrayList<Team> getListTeams() {return listTeams;}
@@ -45,7 +40,7 @@ public class Tournament implements Serializable {
     /////////////////////////////////////////////////////////////////////////////
 
 
-    public static Tournament loadFromFile(String fileName){ //TODO add file operations
+    public static Tournament loadFromFile(String fileName){
         Tournament tournament;
         ObjectInputStream ois = null;
 
@@ -276,11 +271,10 @@ public class Tournament implements Serializable {
         }
     } // Working
 
-    // Requirement 11: Record the score of a completed match
+    // Requirement 11: Record the score of a completed match.
     // Match date/time in the past
     // Only record final score <- should just be able to do if the match is in the past, and user reliant?
     // Exception handling if a match is not found for the date, and if it is not in the past
-    // TODO: TEST
     public void setMatchScore(LocalDateTime dateTime, int teamAScore, int teamBScore){//uml gives just variable types
         for(Match m: listMatches){
             // find the match that matches the dateTime
@@ -291,9 +285,9 @@ public class Tournament implements Serializable {
                 } else {throw new IllegalArgumentException("Match has not happened yet");}
             }
         }
-    }
+    } // Working
 
-    // TODO: Requirement 12: List of upcoming matching
+    // Requirement 12: List of upcoming matching
     // List the date/time, and name of the two teams for each game
     public ArrayList<String> getUpcomingMatches(){
         ArrayList<String> upcoming = new ArrayList<>();
@@ -303,10 +297,9 @@ public class Tournament implements Serializable {
             }
         }
         return upcoming;
-    }
+    } // Working
 
     // Requirement 13: Get list of matches on a particular date, without time
-    // TODO: TEST
     public List<String> getMatchesOn(LocalDate date){
         ArrayList<String> matchesOn = new ArrayList<>();
         for(Match m: listMatches){
@@ -315,44 +308,34 @@ public class Tournament implements Serializable {
             }
         }
         return matchesOn;
-    }
+    } // Working
+
     // Requirement 14: Get list of all games for a specific team, past matches include the score
-    // TODO: TEST
     public List<String> getMatchesFor(String teamName){
         ArrayList<String> matchesForTeam = new ArrayList<>();
         for(Match m: listMatches){
-            // check for team A
-            if(Objects.equals(m.teamA.getName(), teamName)){
-                // Check if the match is in the future and show match date and time instead of score
-                if(m.getDateTime().isAfter(LocalDateTime.now())){
-                    matchesForTeam.add(m.lineupA.getTeam().getName() + " vs " + m.lineupB.getTeam().getName() +
-                            " They play on: " + m.getDateTime());
-                } else { // include score for past matches
-                    matchesForTeam.add(m.lineupA.getTeam().getName() + " vs " + m.lineupB.getTeam().getName() +
-                            " Score of: " + m.getScoreTeamA() + " to " + m.getScoreTeamB());
-                }
-                }
-                // Check for team B
-             else if(Objects.equals(m.teamB.getName(), teamName)){
-                // Check if the match is in the future and show match date and time instead of score
-                if(m.getDateTime().isAfter(LocalDateTime.now())) {
-                    matchesForTeam.add(m.lineupA.getTeam().getName() + " vs " + m.lineupB.getTeam().getName() +
-                            " They play on: " + m.getDateTime());
-                } else { // include score for past matches
-                    matchesForTeam.add(m.lineupA.getTeam().getName() + " vs " + m.lineupB.getTeam().getName() +
-                            " Score of: " + m.getScoreTeamA() + " to " + m.getScoreTeamB());
-                }
-                }
+            // check for team A, run ifFuture method to assign correct string
+            if(Objects.equals(m.teamA.getName(), teamName)){isFutureMatch(matchesForTeam, m);}
+                // Check for team B, run ifFuture method to assign correct string
+             else if(Objects.equals(m.teamB.getName(), teamName)){isFutureMatch(matchesForTeam, m);}
         }
         // If no teams were added throw exception
-        if(matchesForTeam.isEmpty()){
-            throw new IllegalArgumentException("No matches for that team");
-        } else {
-            return matchesForTeam;
+        if(matchesForTeam.isEmpty()){throw new IllegalArgumentException("No matches for that team");}
+        else {return matchesForTeam;}
+    } // Working
+
+    // New method for checking if the match is in the future or not in getMatchesFor method
+    private void isFutureMatch(ArrayList<String> matchesForTeam, Match m) {
+        if(m.getDateTime().isAfter(LocalDateTime.now())){
+            matchesForTeam.add(m.lineupA.getTeam().getName() + " vs " + m.lineupB.getTeam().getName() +
+                    " They play on: " + m.getDateTime());
+        } else { // include score for past matches
+            matchesForTeam.add(m.lineupA.getTeam().getName() + " vs " + m.lineupB.getTeam().getName() +
+                    " Score of: " + m.getScoreTeamA() + " to " + m.getScoreTeamB());
         }
-    }
+    } // Working
+
     // Requirement 15: Get the lineups for a match (either past of future)
-    // TODO: TEST
     public List<String> getMatchLineUps(LocalDateTime date){
         ArrayList<String> lineUps = new ArrayList<>();
         for(Match m: listMatches){
@@ -368,6 +351,6 @@ public class Tournament implements Serializable {
         } else {
             return lineUps;
         }
-    }
+    } // Working
 
 }
