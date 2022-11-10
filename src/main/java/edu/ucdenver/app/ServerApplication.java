@@ -7,7 +7,6 @@ import javafx.event.Event;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Objects;
 
@@ -63,7 +62,7 @@ public class ServerApplication {
     public Tab tabUpcomingMatches;
     public TextField txtTeamNameMatches;
     public Button btnFindMatchesTeam;
-    public ListView lstMatchesPerTeam;
+    public ListView<Object> lstMatchesPerTeam;
     public DatePicker dtpDayOfMatch;
     public Button btnFindMatch;
     private Tournament tournament;
@@ -181,9 +180,11 @@ public class ServerApplication {
         } lstMatchesOn.refresh();
     }
 
-    public void getMatchesFor(ActionEvent actionEvent) {
+    public void getMatchesOn(ActionEvent actionEvent) {
+        this.lstMatchesOn.setItems(FXCollections.observableArrayList(tournament.getMatchesOn(this.dtpMatchDate.getValue().atTime((LocalTime) null))));
     }
 
-    public void getMatchesOn(ActionEvent actionEvent) {
+    public void getMatchesFor(ActionEvent actionEvent) {
+        this.lstMatchesPerTeam.setItems(FXCollections.observableArrayList(tournament.getMatchesFor(this.txtTeamNameMatches.getText())));
     }
 }
