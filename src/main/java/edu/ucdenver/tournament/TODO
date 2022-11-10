@@ -1,2 +1,5 @@
-- Change pointers to have string assignments (build toString method and overwrites)
+- Change pointers to have string assignments (build toString method and overwrites) ## HARD MAYBE
 - Update comments
+- Create readme
+- Insert instructions for testing to GUI
+- Import Images
