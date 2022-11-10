@@ -7,7 +7,6 @@ import javafx.event.Event;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import java.time.LocalTime;
 import java.util.Objects;
 
 public class ServerApplication {
@@ -65,6 +64,7 @@ public class ServerApplication {
     public ListView<Object> lstMatchesPerTeam;
     public DatePicker dtpDayOfMatch;
     public Button btnFindMatch;
+    public ListView<Object> lstMatch;
     private Tournament tournament;
     public static final String filename = "./tournament.ser";
 
@@ -176,15 +176,16 @@ public class ServerApplication {
 
     public void getUpcomingMatches(Event event) {
         if(this.tabUpcomingMatches.isSelected()) {
-            this.lstMatchesOn.setItems(FXCollections.observableArrayList(tournament.getUpcomingMatches()));
-        } lstMatchesOn.refresh();
+            this.lstMatch.setItems(FXCollections.observableArrayList(tournament.getUpcomingMatches()));
+        } lstMatch.refresh();
     }
 
     public void getMatchesOn(ActionEvent actionEvent) {
-        this.lstMatchesOn.setItems(FXCollections.observableArrayList(tournament.getMatchesOn(this.dtpMatchDate.getValue().atTime((LocalTime) null))));
+        this.lstMatchesOn.setItems(FXCollections.observableArrayList(tournament.getMatchesOn(this.dtpDayOfMatch.getValue())));
     }
 
     public void getMatchesFor(ActionEvent actionEvent) {
         this.lstMatchesPerTeam.setItems(FXCollections.observableArrayList(tournament.getMatchesFor(this.txtTeamNameMatches.getText())));
     }
+
 }
