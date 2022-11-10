@@ -1,5 +1,7 @@
 package edu.ucdenver.tournament;
 
+import javafx.scene.control.Alert;
+
 import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -230,6 +232,10 @@ public class Tournament implements Serializable {
     // Exception handling for above
     public void addPlayerToMatch(LocalDateTime dateTime, String teamName, String playerName){
         for(Match m: listMatches){
+            // Will not let the match happen (add players) without four referees
+            if(m.getReferees().size() != 4){
+                throw new IllegalArgumentException("You need four referees to create a match!");
+            }
             // Find correct match
             if(m.getDateTime().equals(dateTime)){
                 // Check for team A

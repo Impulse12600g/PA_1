@@ -173,11 +173,15 @@ public class ServerApplication {
     public void addPlayerToMatch(ActionEvent actionEvent) {
         tournament.addPlayerToMatch(this.dtpAddPlayerMatchDate.getValue().atTime(Integer.parseInt(txtAddPlayerMatchTimeHour.getText()) ,Integer.parseInt(txtAddPlayerMatchTimeMin.getText())),
                 this.txtAddPlayerTeamName.getText(), this.txtAddPlayerPlayerName.getText());
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Player successfully added to match!");
+        alert.show();
     }
 
     public void setMatchScore(ActionEvent actionEvent) {
         tournament.setMatchScore(this.dtpRecordMatchScoreDate.getValue().atTime(Integer.parseInt(dtpRecordMatchScoreHour.getText()) ,Integer.parseInt(dtpRecordMatchScoreMinute.getText())),
                 Integer.parseInt(this.txtTeamAScore.getText()), Integer.parseInt(this.txtTeamBScore.getText()));
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Match score set!");
+        alert.show();
     }
 
     public void getUpcomingMatches(Event event) {
