@@ -1,9 +1,0 @@
-
-- Create readme
-- Insert instructions for testing to GUI
-        - ex: in add country, note to have three countries (one for each team, and one for the refs)
-        - add referee, note that you need to make at least 4 for a match, they have to be a different country than the teams
-        - add matches, note that a match has to be added first without a referee
-        - then note that you need to add exactly 4 refs to the match in order to continue
-        - add player to match note: will only work if there is a valid match with 4 referees
-- Import Images
