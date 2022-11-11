@@ -267,7 +267,7 @@ public class Tournament implements Serializable {
                         }
                     }
                 } else {throw new IllegalArgumentException("Team name not found");}
-            } else {throw new IllegalArgumentException("Match not found");}
+            }
         }
     } // Working
 
