@@ -12,8 +12,8 @@ import java.io.BufferedReader;
 
 public class Server implements Runnable{
 
-    private int port;
-    private int backlog;
+    private final int port;
+    private final int backlog;
     private int connectionCounter;
     private static Boolean keepServerRunning;
     static ExecutorService executorService;
@@ -34,7 +34,7 @@ public class Server implements Runnable{
     }
 
     private Socket waitForConnection() throws IOException {
-        Socket connection = this.socketServer.accept();
+        Socket connection = socketServer.accept();
         this.connectionCounter++;
         return connection;
     }

@@ -3,8 +3,8 @@ package edu.ucdenver.tournament;
 import java.io.Serializable;
 
 public class Referee implements Serializable {
-    private String name;
-    private Country country;
+    private final String name;
+    private final Country country;
 
     public Referee(String name, Country country){
         this.name = name;

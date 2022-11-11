@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LineUp implements Serializable {
-    private ArrayList<Player> listOfPlayers;
-    private Team team;
+    private final ArrayList<Player> listOfPlayers;
+    private final Team team;
     public LineUp(Team team){
         this.team = team;
         this.listOfPlayers = new ArrayList<>();

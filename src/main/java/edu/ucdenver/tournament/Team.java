@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Team implements Serializable {
-    private String name;
-    private ArrayList<Player> squad;
-    private Country country;
+    private final String name;
+    private final ArrayList<Player> squad;
+    private final Country country;
 
     public Team(String name, Country country){
         this.name = name;

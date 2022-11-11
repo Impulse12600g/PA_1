@@ -9,8 +9,8 @@ import java.util.Objects;
 
 public class ClientWorker implements Runnable {
 
-    private Server server;
-    private Socket connection;
+    private final Server server;
+    private final Socket connection;
     private Boolean keepRunningClient;
     private PrintWriter output;
     private BufferedReader input;

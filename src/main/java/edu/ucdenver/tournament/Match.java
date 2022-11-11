@@ -10,14 +10,14 @@ import java.util.List;
 import java.util.Objects;
 
 public class Match implements Serializable {
-    private LocalDateTime dateTime;
+    private final LocalDateTime dateTime;
     private int scoreTeamA;
     private int scoreTeamB;
     LineUp lineupA;
     LineUp lineupB;
     Team teamA;
     Team teamB;
-    private ArrayList<Referee> listReferees;
+    private final ArrayList<Referee> listReferees;
 
     public Match(LocalDateTime dateTime, Team teamA, Team teamB){
         this.dateTime=dateTime;

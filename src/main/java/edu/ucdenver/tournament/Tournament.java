@@ -11,13 +11,13 @@ import java.util.Objects;
 import javax.sound.sampled.Line;
 import java.util.Scanner;
 public class Tournament implements Serializable {
-    private String name;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
-    private ArrayList<Country> participatingCountries;
-    private ArrayList<Team> listTeams;
-    private ArrayList<Referee> listReferees;
-    private ArrayList<Match> listMatches;
+    private final String name;
+    private final LocalDateTime startDate;
+    private final LocalDateTime endDate;
+    private final ArrayList<Country> participatingCountries;
+    private final ArrayList<Team> listTeams;
+    private final ArrayList<Referee> listReferees;
+    private final ArrayList<Match> listMatches;
 
 
     public Tournament(String name, LocalDateTime startDate, LocalDateTime endDate){
