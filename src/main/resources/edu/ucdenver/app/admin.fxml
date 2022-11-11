@@ -502,7 +502,7 @@
                               <Label prefHeight="17.0" prefWidth="60.0" text="Admin" />
                               <Label prefHeight="17.0" prefWidth="45.0" text="Client" GridPane.columnIndex="1" />
                               <Label prefHeight="13.0" prefWidth="280.0" text="Enter three countires, one for ref and two for teams " GridPane.rowIndex="1" GridPane.valignment="TOP" />
-                              <Label prefHeight="17.0" prefWidth="280.0" text="Add Referee with specified country name" GridPane.rowIndex="1" />
+                              <Label prefHeight="17.0" prefWidth="280.0" text="Add 4 Referees with specified country name" GridPane.rowIndex="1" />
                               <Label prefHeight="17.0" prefWidth="274.0" text="Add Team with other two seperate countries" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
                               <Label prefHeight="17.0" prefWidth="275.0" text="Add Players to each specific team added before" GridPane.rowIndex="2" GridPane.valignment="TOP" />
                               <Label GridPane.rowIndex="2" />
