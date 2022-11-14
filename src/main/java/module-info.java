@@ -1,3 +1,8 @@
+/**
+ * <p>
+ * pa1 module
+ * </p>
+ */
 module edu.ucdenver.pa1 {
     requires javafx.controls;
     requires javafx.fxml;

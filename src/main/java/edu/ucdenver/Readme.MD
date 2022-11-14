@@ -85,3 +85,35 @@ CLIENT STEPS:
 - Matches Per Team: Enter the team name and press Find matches
 - Match Lineups: Enter the Date and Time of a match  
 **Testing Instructions are included in the app**
+
+---------------------------------------------------------
+
+### FOLDER STRUCTURE
+- doc
+  - index-files
+- src
+  - app
+    - HelloApplication
+    - ServerApplication
+  - server
+    - ClientWorker
+    - Server
+  - tournament
+    - Country
+    - Lineup
+    - Match
+    - Player
+    - Referee
+    - Team
+    - Tournament
+
+IMPORTANT NOTES:
+- doc / index-files
+  - holds the javadoc and html docs
+- ServerApplication:
+  - This is the main controller for the project, you will find all communication between the app and the methods here
+- Server / ClientWorker:
+  - You will find server / client communication here, even through we are not using the client worker on this version of the app
+- Tournament:
+  - This class holds the majority of the structure to the project. 
+  - Methods and class manipulations happen here.

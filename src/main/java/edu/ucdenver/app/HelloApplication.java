@@ -8,7 +8,20 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * <p>
+ * HelloApplication driver for the app.
+ * This class holds and sets up the fxml for the app.
+ * </p>
+ */
 public class HelloApplication extends Application {
+
+    /**
+     * <p>
+     * start method to run the application
+     * </p>
+     * @param stage parameter sent to this method to set up the title and scene
+     */
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("admin.fxml"));
@@ -24,6 +37,12 @@ public class HelloApplication extends Application {
 
     }
 
+    /**
+     * <p>
+     * main method of the program. Will just launch the application and start running everything
+     * </p>
+     * @param args takes in any arguments if needed
+     */
     public static void main(String[] args) {
         launch();
     }
