@@ -25,7 +25,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("admin.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 720, 720);
+        Scene scene = new Scene(fxmlLoader.load(), 720, 500);
         stage.setTitle("World Cup!");
         stage.setScene(scene);
         stage.show();
